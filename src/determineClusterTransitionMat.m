@@ -75,7 +75,7 @@ idx_InCluster{1} = find(c0_Labels(1:M-1) == IX_clusters(1));
 idx_InCluster_OneStepAhead{1} = idx_InCluster{1} + ones(size(idx_InCluster{1}));
 
 % Computes transition probability, IX sorted with descending trans. prob.
-[Pkj(1,:),IX] = crom2.misc.determineTransitionProbabilityOfOneCluster(c0_Labels,idx_InCluster_OneStepAhead{1});
+[Pkj(1,:),IX] = determineTransitionProbabilityOfOneCluster(c0_Labels,idx_InCluster_OneStepAhead{1});
 
 %% Transition probabilities for remaining cluster 2, ..., nCluster
 % Init
@@ -96,7 +96,7 @@ while kCluster <= nCluster
     idx_InCluster_OneStepAhead{kCluster} = idx_InCluster{kCluster} + ones(size(idx_InCluster{kCluster}));
     
     % Transition probability: kCluster -> jCluster, IX sorted with descending trans. prob.
-    [Pkj(kCluster,:),IX] = crom2.misc.determineTransitionProbabilityOfOneCluster(c0_Labels,idx_InCluster_OneStepAhead{kCluster});
+    [Pkj(kCluster,:),IX] = determineTransitionProbabilityOfOneCluster(c0_Labels,idx_InCluster_OneStepAhead{kCluster});
     
     % Next cluster = kCluster+1
     kCluster = kCluster + 1;
